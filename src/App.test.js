@@ -26,6 +26,7 @@ it('calls generateRandomQuote prop function when next button is clicked', () => 
   generateBtn.simulate('click');
   expect(generateRandomQuoteFn).toHaveBeenCalledTimes(1);
 });
+
 test('renders learn react link', () => {
   render(<App />);
   const linkElement = screen.getByText(/learn react/i);
