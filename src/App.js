@@ -1,8 +1,33 @@
+import { render } from '@testing-library/react';
+import Enzyme, { mount } from 'enzyme';
+// import App from './App';
+import Quotes from './components/Quotes';
 import React,{ Component, Fragment } from 'react';
 import './App.css';
 import {Container, Row, Button, DropdownButton, Dropdown, Col } from 'react-bootstrap';
 import { LaunchCard } from './components/Card';
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+
+Enzyme.configure({ adapter: new Adapter() });
+
+test('displays a quote', () => {
+  render(<App />);
+  const quote = document.querySelector('#text p');
+  expect(quote).toBeInTheDocument();
+  expect(quote).not.toBeEmptyDOMElement();
+});
+
+it('calls generateRandomQuote prop function when next button is clicked', () => {
+  const generateRandomQuoteFn = jest.fn();
+  const quote = mount(
+    <Quotes generateRandomQuote={generateRandomQuoteFn} quote={{}} />
+  );
+  const generateBtn = quote.find('#new-quote');
+
+  generateBtn.simulate('click');
+  expect(generateRandomQuoteFn).toHaveBeenCalledTimes(1);
+});
 
 class App extends Component{
   constructor(){
