@@ -21,7 +21,7 @@ export const LaunchCard = ({launch}) => {
         <Fragment>
             <Col lg={3} md={4} sm={6} xs={12}>
             <Card border="warning" className="card">
-                <Card.Img className="cardImage" variant="top" src={(launch.links.flickr_images.length === 0) ?  (process.env.PUBLIC_URL+'./No_image_Available.jpg') : launch.links.flickr_images[0]} />
+                <Card.Img className="cardImage" variant="top" src={launch.links.flickr_images[0]} />
                 <Card.Body>
                 <Card.Title>{launch.mission_name}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{launch.rocket.rocket_name}</Card.Subtitle>
